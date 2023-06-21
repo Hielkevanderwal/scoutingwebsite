@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -75,8 +77,12 @@ WSGI_APPLICATION = "scoutingwebsite.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE":   'django.db.backends.mysql',
+        "NAME":     os.getenv("DATABASE_NAME"),
+        "USER":     os.getenv("DATABASE_USER"), 
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST":     os.getenv("DATABASE_HOST"),
+        "PORT":     os.getenv("DATABASE_PORT"),
     }
 }
 
