@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "mediamanager",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
