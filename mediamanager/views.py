@@ -1,13 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.views.generic import TemplateView
+
+from .models import Album
 
 # Create your views here.
 class UploadView(TemplateView):
     template_name = "upload.html"
 
 class AlbumOverviewView(TemplateView):
-    template_name = "media_index.html"
+    
+    def get(self, request):
+        context = {
+            "Albums": Album.objects.all()
+        }
+        print(context)
+
+        return render(request, "album_overview.html", context)
+
 
 class AlbumView(TemplateView):
-    template_name = "album.html"
+
+    def get(self, request, slug):
+        print(slug)
+
+        context = {
+            "Album": get_object_or_404(Album, url_slug=slug)
+        }
+
+        return render(request, "album.html", context)
