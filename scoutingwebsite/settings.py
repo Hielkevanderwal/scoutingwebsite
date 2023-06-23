@@ -58,7 +58,12 @@ ROOT_URLCONF = "scoutingwebsite.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "mediamanager\\templates")],
+
+        "DIRS": [
+            os.path.join(BASE_DIR, "base\\templates"),
+            os.path.join(BASE_DIR, "mediamanager\\templates"
+        ],
+
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

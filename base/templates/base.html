@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block page_title %}unnamed{% endblock %}</title>
+    </head>
+    <body>
+        <div class='navbar'>
+            {% include 'navbar.html' %}
+        </div>
+        <div class="page_content">
+            {% block page_content %}
+            <p>Ik hoor hier niet te zijn :)</p>
+            {% endblock %}
+        </div>
+        <div class="footer">
+
+        </div>
+    </body>
+</html>
