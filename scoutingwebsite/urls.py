@@ -21,10 +21,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from mediamanager import urls as mediamanageruls
+from base import urls as baseurls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("media/", include(mediamanageruls.urlpatterns))
+    path("media/", include(mediamanageruls.urlpatterns)),
+    path("", include(baseurls.urlpatterns))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

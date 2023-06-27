@@ -61,7 +61,7 @@ TEMPLATES = [
 
         "DIRS": [
             os.path.join(BASE_DIR, "base\\templates"),
-            os.path.join(BASE_DIR, "mediamanager\\templates"
+            os.path.join(BASE_DIR, "mediamanager\\templates")
         ],
 
         "APP_DIRS": True,
