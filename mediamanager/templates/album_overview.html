@@ -1,7 +1,46 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% extends 'base.html' %}
 
-{% for album in Albums %}
-<div>
-    <h3>{{album.name}}</h3>
-</div>
-{% endfor %}
+{% load static %}
+
+{% block page_title %}Home{% endblock %}
+
+
+{% block page_content %}
+
+<main role="main">
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">    
+        {% for album in Albums %}
+        <div class="col-md-4  album_zoom">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="width: 100%;aspect-ratio: 16/9; display: block; object-fit: cover;" src="{{ album.thumbnail.photo.url }}" data-holder-rendered="true">
+            <div class="card-body">
+              <h4>{{ album.name }}</h4>
+              <p class="card-text">{{ album.description | truncatechars:100 }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{% url 'ablumview' album.url_slug %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+
+                  {% if request.user.is_superuser %}
+                  <a href="{% url 'editview' album.url_slug %}"><button type="button" class="btn btn-sm btn-outline-secondary">Edit</button></a>
+                  {% endif %}
+
+                </div>
+                <small class="text-muted">{{ album.upload_date|date:"d-m-Y" }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="d-flex flex-row-reverse">
+        <a href="{% url 'add album' %}"><button type="button" class="btn btn-primary position-relative btn-lg">
+          Album toevoegen
+        </button></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

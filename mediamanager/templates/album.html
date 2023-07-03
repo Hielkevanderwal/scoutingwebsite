@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Album-{{Album.name}}{% endblock %}
+
+{% block page_content %}
+
+<main role="main">
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="mb-5">
+          <h1>{{Album.name}}</h1>
+          <p>{{Album.description}}</p>
+        </div>
+        <div class="row">    
+          {% for photo in Album.photos.all %}
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="width: 100%; aspect-ratio: 1/1; display: block; object-fit: cover;" src="{{ photo.photo.url }}" data-holder-rendered="true">
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="d-flex justify-content-between">
+          <small class="text-muted mr-auto">{{ Album.photo_count }} foto's</small>
+
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link">Previous</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <!-- <li class="page-item disabled"><a class="page-link" href="#">2</a></li> -->
+              <li class="page-item disabled">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+          <small class="text-muted">Geüpload op {{ Album.upload_date|date:"d-m-Y" }}</small>
+        </div>
+      </div>
+    </div>
+</main>
+
+{% endblock %}
